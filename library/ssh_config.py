@@ -705,6 +705,9 @@ def main():
             user=dict(default=None, type='str'),
             user_known_hosts_file=dict(default=None, type='str'),
             proxycommand=dict(default=None, type='str'),
+            remoteforward=dict(default=None, type='str'),
+            localforward=dict(default=None, type='str'),
+            forwardagent=dict(default=None, type='str'),
             strict_host_key_checking=dict(
                 default=None,
                 choices=['yes', 'no', 'ask']
