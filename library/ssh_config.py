@@ -746,7 +746,6 @@ def main():
 
     if args['forwardagent'] is not None:
         args['forwardagent'] = "yes" if args['forwardagent'] else "no"
-        print args['forwardagent']
 
     # See if the identity file exists or not, relative to the config file
     if os.path.exists(config_file) and args['identity_file']:
