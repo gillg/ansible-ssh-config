@@ -707,7 +707,7 @@ def main():
             proxycommand=dict(default=None, type='str'),
             remoteforward=dict(default=None, type='str'),
             localforward=dict(default=None, type='str'),
-            forwardagent=dict(default=None, type='str'),
+            forwardagent=dict(default=None, type='bool'),
             strict_host_key_checking=dict(
                 default=None,
                 choices=['yes', 'no', 'ask']
@@ -726,6 +726,9 @@ def main():
         strict_host_key_checking=module.params.get('strict_host_key_checking'),
         user_known_hosts_file=module.params.get('user_known_hosts_file'),
         proxycommand=module.params.get('proxycommand'),
+        remoteforward=module.params.get('remoteforward'),
+        localforward=module.params.get('localforward'),
+        forwardagent=module.params.get('forwardagent'),
     )
     state = module.params.get('state')
     config_changed = False
@@ -740,6 +743,10 @@ def main():
         config_file = os.path.join(
             os.path.expanduser('~{0}'.format(user)), '.ssh', 'config'
         )
+
+    if args['forwardagent'] is not None:
+        args['forwardagent'] = "yes" if args['forwardagent'] else "no"
+        print args['forwardagent']
 
     # See if the identity file exists or not, relative to the config file
     if os.path.exists(config_file) and args['identity_file']:
